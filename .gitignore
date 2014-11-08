@@ -6,7 +6,6 @@ platforms/
 plugins/
 hooks/
 scss/
-.bowerrc
-www/lib
-www/img
+www/lib/**
+www/img/**
 
