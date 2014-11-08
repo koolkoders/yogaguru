@@ -1,0 +1,14 @@
+<ion-view title="Yoga Master">
+  <ion-content class="padding">
+  
+    <ion-list>
+      <ion-item ng-repeat="category in yogaCategories" class="item item-thumbnail-left my-balanced" href="#/tab/yoga/{{category.id}}">
+        <img data-ng-src="{{ category.URL }}" alt="">
+        <h2 class="energized">{{category.title}}</h2>
+        <p class="royal">{{category.content}}</p>        
+      </ion-item>
+    </ion-list>
+        
+  </ion-content>
+    
+</ion-view>
