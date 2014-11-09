@@ -1,0 +1,54 @@
+<!--
+  This template loads for the 'tab.yoga-type1' state (app.js)
+-->
+<ion-view title="{{yoga.title}}">
+  <ion-content has-header="true" padding="true">
+    <h5 class="balanced">{{yoga.content}}</h5>
+
+
+    <div class="list card">
+
+      <label class="item item-input item-label">
+        <span class="input-label">Enter Rounds</span>
+        <i class="icon ion-ios7-sunny-outline"></i>
+        <input type="range" name="roundDuration" min="0" max="10" value="5"> 
+        <i class="icon ion-ios7-sunny"></i>
+      </label>
+      <label class="item item-input item-label">
+        <span class="input-label">Enter Round Duration</span>
+        <input type="range" class="range-positive" name="roundDuration" min="0" max="10" value="5">     
+      </label>
+      <ul class="list">
+        <li class="item item-toggle">
+           Music
+           <label class="toggle toggle-balanced">
+             <input type="checkbox" checked>
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+      </ul>
+ 
+<!--
+      <div class="list">
+        <div class="item range range-positive">
+          <i class="icon ion-ios7-sunny-outline"></i>
+          <input type="range" name="volume" min="0" max="100" value="33">
+          <i class="icon ion-ios7-sunny"></i>
+        </div>
+      </div>
+-->
+
+      <div class="row">
+        <div class="col col-offset-33">
+          <button class="button icon ion-play balanced"></button>
+          <button class="button icon ion-pause"></button>
+          <button class="button icon ion-stop assertive"></button>
+        </div>
+      </div>              
+     
+    </div>
+
+  </ion-content>
+</ion-view>

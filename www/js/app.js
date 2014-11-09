@@ -56,7 +56,16 @@ angular.module('yogaapp', ['ionic', 'yoga.controllers', 'yoga.services'])
         }
       }
     })
-
+    .state('tab.yoga-type1', {
+      url: '/yogatype1/:yogaId',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/yoga-type1.html',
+          controller: 'YogaType1Ctrl'
+        }
+      }
+    })
+  
     .state('tab.activity', {
       url: '/activity',
       views: {

@@ -2,42 +2,31 @@ angular.module('yoga.services', [])
 
 /**
  * A simple example service that returns some data.
- * Links
-   http://www.indiaparenting.com/alternative-healing/12_755/3-quick-yoga-aasans.html
-   
-   Icons: http://www.flaticon.com/free-icon/frontal-meditation-yoga-posture-silhouette_10540
+ *
  */
 .factory('Yoga', function() {
   // Might use a resource here that returns a JSON array
-  var categories = [
-    { id: 0, title: 'Popular', URL: 'img/th9.jpg', content: 'Popular Yoga exercises with most benefits' },
-    { id: 1, title: 'Pranayam', URL: 'img/pra1.jpg', content: 'Pranayama, or deep yogic breathing, is a life and energy-giving source that can cure almost every physical ailment.' },
-    { id: 2, title: 'Asanas', URL: 'img/asa1.jpg', content: 'Yoga asanas is a wonderful way to encourage them to a healthy lifestyle.' },
-    { id: 3, title: 'Relaxation', URL: 'img/rel1.jpg', content: 'Relaxation exercises' }
-  ];
-
-  var pranayams = [
-    { id: 0, title: 'Bhastrika', URL: 'img/th3.jpg', content: 'blah blah'  },
-    { id: 1, title: 'Anuloma Viloma', URL: 'img/th8.jpg', content: 'blah blah' },
-    { id: 2, title: 'Kapalabhati', URL: 'img/th2.jpg', content: 'blah blah' },
-    { id: 3, title: 'Bhramari', URL: 'img/th3.jpg', content: 'blah blah' },
-    { id: 4, title: 'Ujjayee', URL: 'img/th5.jpg', content: 'blah blah' }    
-  ];
-
-  var popular = [
-    { id: 0, title: 'SuryaNamaskar', URL: 'img/sur1.jpg', content: 'Sun salutation in 12 steps'  }  
-  ];
-
-  var relaxation = [
-    { id: 0, title: 'Shavasana', URL: 'img/th10.jpg', content: 'blah blah'  }  
-  ];
-
-  var asanas = [
-    { id: 0, title: 'Sarvangasana', URL: 'img/th3.jpg', content: 'blah blah'  },
-    { id: 1, title: 'Dhanurasana', URL: 'img/th8.jpg', content: 'blah blah' },
-    { id: 2, title: 'Chakrasana', URL: 'img/th2.jpg', content: 'blah blah' },
-    { id: 3, title: 'Virbhadrasana', URL: 'img/th3.jpg', content: 'blah blah' },
-    { id: 4, title: 'Sethu bandhasana', URL: 'img/th5.jpg', content: 'blah blah' }    
+  var yogadata = [
+    { id: 1, title: 'Popular', URL: 'img/th9.jpg', parentId: 0, content: 'Popular Yoga exercises with most benefits' },
+    { id: 2, title: 'Pranayam', URL: 'img/pra1.jpg', parentId: 0, content: 'Pranayama, or deep yogic breathing, is a life and energy-giving source that can cure almost every physical ailment.' },
+    { id: 3, title: 'Asanas', URL: 'img/asa1.jpg', parentId: 0, content: 'Yoga asanas is a wonderful way to encourage them to a healthy lifestyle.' },
+    { id: 4, title: 'Relaxation', URL: 'img/rel1.jpg', parentId: 0, content: 'Relaxation exercises' },
+    // Pranayama
+    { id: 30, title: 'Bhastrika', URL: 'img/th3.jpg', parentId: 2, content: 'Bhastrika'  },
+    { id: 31, title: 'Anuloma Viloma', URL: 'img/th8.jpg', parentId: 2, content: 'Anuloma Viloma' },
+    { id: 32, title: 'Kapalabhati', URL: 'img/th2.jpg', parentId: 2, content: 'Kapalabhati' },
+    { id: 33, title: 'Bhramari', URL: 'img/th3.jpg', parentId: 2, content: 'Bhramari' },
+    { id: 34, title: 'Ujjayee', URL: 'img/th5.jpg', parentId: 2, content: 'Ujjayee' },
+    // Popular
+    { id: 60, title: 'SuryaNamaskar', URL: 'img/sur1.jpg', parentId: 1, content: 'Sun salutation in 12 steps'  },
+    // Asanas
+    { id: 90, title: 'Sarvangasana', URL: 'img/th3.jpg', parentId: 3, content: 'Sarvangasana'  },
+    { id: 91, title: 'Dhanurasana', URL: 'img/th8.jpg', parentId: 3, content: 'Dhanurasana' },
+    { id: 92, title: 'Chakrasana', URL: 'img/th2.jpg', parentId: 3, content: 'Chakrasana' },
+    { id: 93, title: 'Virbhadrasana', URL: 'img/th3.jpg', parentId: 3, content: 'Virbhadrasana' },
+    { id: 94, title: 'Sethu bandhasana', URL: 'img/th5.jpg', parentId: 3, content: 'Sethu bandhasana' },
+    // Relaxation
+    { id: 120, title: 'Shavasana', URL: 'img/th10.jpg', parentId: 4, content: 'Shavasana'  }    
   ];
   
   var activities = [
@@ -49,25 +38,29 @@ angular.module('yoga.services', [])
   
   return {
     allCategories: function() {
-      return categories;
+      var results = yogadata.filter(function (element) {
+        return element.parentId == 0;
+      });
+      return results;
     },
-    get: function(yogaId) {
-      // Simple index lookup
-      return categories[yogaId];
+    
+    getItem: function(index) {
+      var results = yogadata.filter(function (element) {
+        return element.id == index;
+      });
+      return results[0];
     },
+    
     allActivites: function() {
       return activities;
     },
-    getItems: function(yogaId) {
-      if (yogaId == 0) {
-        return popular; 
-      } else if (yogaId == 1) {
-        return pranayams; 
-      } else if (yogaId == 2) {
-        return asanas; 
-      } else if (yogaId == 3) {
-        return relaxation; 
-      } 
-    },
+    
+    getCategoryItems: function(parentId) {
+      var results = yogadata.filter(function (element) {
+        return element.parentId == parentId;
+      });
+      return results;
+    }
+        
   }
 });
