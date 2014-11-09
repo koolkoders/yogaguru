@@ -4,7 +4,7 @@ angular.module('yoga.services', [])
  * A simple example service that returns some data.
  *
  */
-.factory('Yoga', function() {
+.factory('YogaService', function() {
   // Might use a resource here that returns a JSON array
   var yogadata = [
     { id: 1, title: 'Popular', URL: 'img/th9.jpg', parentId: 0, content: 'Popular Yoga exercises with most benefits' },
@@ -18,15 +18,15 @@ angular.module('yoga.services', [])
     { id: 33, title: 'Bhramari', URL: 'img/th3.jpg', parentId: 2, content: 'Bhramari' },
     { id: 34, title: 'Ujjayee', URL: 'img/th5.jpg', parentId: 2, content: 'Ujjayee' },
     // Popular
-    { id: 60, title: 'SuryaNamaskar', URL: 'img/sur1.jpg', parentId: 1, content: 'Sun salutation in 12 steps'  },
+    { id: 60, title: 'SuryaNamaskar', URL: 'img/sur1.jpg', parentId: 1, content: 'Sun salutation', sound: 'sounds/suryanamaskar.mp3'},
     // Asanas
-    { id: 90, title: 'Sarvangasana', URL: 'img/th3.jpg', parentId: 3, content: 'Sarvangasana'  },
-    { id: 91, title: 'Dhanurasana', URL: 'img/th8.jpg', parentId: 3, content: 'Dhanurasana' },
-    { id: 92, title: 'Chakrasana', URL: 'img/th2.jpg', parentId: 3, content: 'Chakrasana' },
-    { id: 93, title: 'Virbhadrasana', URL: 'img/th3.jpg', parentId: 3, content: 'Virbhadrasana' },
-    { id: 94, title: 'Sethu bandhasana', URL: 'img/th5.jpg', parentId: 3, content: 'Sethu bandhasana' },
+    { id: 90, title: 'Sarvangasana', URL: 'img/th3.jpg', parentId: 3, content: 'Sarvangasana', sound: 'sounds/two.mp3' },
+    { id: 91, title: 'Dhanurasana', URL: 'img/th8.jpg', parentId: 3, content: 'Dhanurasana', sound: 'sounds/two.mp3' },
+    { id: 92, title: 'Chakrasana', URL: 'img/th2.jpg', parentId: 3, content: 'Chakrasana', sound: 'sounds/two.mp3' },
+    { id: 93, title: 'Virbhadrasana', URL: 'img/th3.jpg', parentId: 3, content: 'Virbhadrasana', sound: 'sounds/two.mp3' },
+    { id: 94, title: 'Sethu bandhasana', URL: 'img/th5.jpg', parentId: 3, content: 'Sethu bandhasana', sound: 'sounds/two.mp3' },
     // Relaxation
-    { id: 120, title: 'Shavasana', URL: 'img/th10.jpg', parentId: 4, content: 'Shavasana'  }    
+    { id: 120, title: 'Shavasana', URL: 'img/th10.jpg', parentId: 4, content: 'Shavasana'  }
   ];
   
   var activities = [
@@ -36,6 +36,7 @@ angular.module('yoga.services', [])
     { id: 3, desc: 'Did 10 min Pranayam on Sun 11/2' }
   ];
   
+  // TODO: Change these funtions to async instead.
   return {
     allCategories: function() {
       var results = yogadata.filter(function (element) {

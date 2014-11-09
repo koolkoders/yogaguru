@@ -42,12 +42,12 @@
 
       <div class="row">
         <div class="col col-offset-33">
-          <button class="button icon ion-play balanced"></button>
-          <button class="button icon ion-pause"></button>
-          <button class="button icon ion-stop assertive"></button>
+          <button class="button icon ion-play balanced" ng-click="doPlay()"></button>
+          <button class="button icon ion-pause" ng-click="doPause()"></button>
+          <button class="button icon ion-stop assertive" ng-click="doStop()"></button>
         </div>
       </div>              
-     
+      <div>{{mediaStatus}}</div>
     </div>
 
   </ion-content>

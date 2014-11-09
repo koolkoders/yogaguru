@@ -1,10 +1,6 @@
-/* Empty. Add your own CSS if you like */
-.title {
-/*    background: #6bc48d;*/
-}
+/* Custom CSS definitions */
 
-.my-balanced {
-    background: #6bc48d;
+.yborder {
     box-shadow: 0px 5px 5px grey;
 }
 
@@ -18,3 +14,10 @@
   align-content: center;
   align-self: center;
 }
+
+/*
+.my-balanced {
+    background: #6bc48d;
+    box-shadow: 0px 5px 5px grey;
+}
+*/

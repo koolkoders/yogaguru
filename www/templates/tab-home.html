@@ -2,10 +2,10 @@
   <ion-content class="padding">
   
     <ion-list>
-      <ion-item ng-repeat="category in yogaCategories" class="item item-thumbnail-left my-balanced" href="#/tab/yoga/{{category.id}}">
-        <img data-ng-src="{{ category.URL }}" alt="">
+      <ion-item ng-repeat="category in yogaCategories" class="item item-thumbnail-left" href="#/tab/yoga/{{category.id}}">
+        <img data-ng-src="{{ category.URL }}" alt=""  width="100" height="100">
         <h2 class="energized">{{category.title}}</h2>
-        <p class="royal">{{category.content}}</p>        
+        <p>{{category.content}}</p>        
       </ion-item>
     </ion-list>
         
