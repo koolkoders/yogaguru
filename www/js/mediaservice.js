@@ -30,8 +30,8 @@ angular.module('media.services', [])
         if(onStatus){onStatus(status);}
       };
 
-      if($ionicPlatform.is('android')) {
-        src = 'file:///android_asset/www/' + src;
+      if ($ionicPlatform.is('android')) {
+        src = '/android_asset/www/' + src;
       }
       alert("Audio src = " + src);
       defer.resolve(new $window.Media(src, mediaSuccess, mediaError, mediaStatus));
@@ -48,7 +48,7 @@ angular.module('media.services', [])
   }
 
   function getStatusMessage(status){
-    if (status === 0){return 'Media.MEDIA_NONE';}
+    if (status === 0) {return 'Media.MEDIA_NONE';}
     else if (status === 1) { return 'Media.MEDIA_STARTING';}
     else if (status === 2) { return 'Media.MEDIA_RUNNING';}
     else if (status === 3) { return 'Media.MEDIA_PAUSED';}
@@ -57,7 +57,7 @@ angular.module('media.services', [])
   }
 
   function getErrorMessage(code){
-    if(code === 1){return 'MediaError.MEDIA_ERR_ABORTED';}
+    if (code === 1) {return 'MediaError.MEDIA_ERR_ABORTED';}
     else if(code === 2){return 'MediaError.MEDIA_ERR_NETWORK';}
     else if(code === 3){return 'MediaError.MEDIA_ERR_DECODE';}
     else if(code === 4){return 'MediaError.MEDIA_ERR_NONE_SUPPORTED';}

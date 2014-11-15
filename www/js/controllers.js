@@ -13,7 +13,7 @@ angular.module('yoga.controllers', [])
   $scope.categoryItems = YogaService.getCategoryItems($stateParams.yogaId);
 })
 
-.controller('YogaType1Ctrl', function($scope, $stateParams, YogaService, MediaService) {
+.controller('YogaType1Ctrl', function($scope, $stateParams, YogaService, MediaService, $cordovaMedia, $ionicLoading) {
   $scope.yoga = YogaService.getItem($stateParams.yogaId);
 
   var mHandle;
@@ -21,11 +21,12 @@ angular.module('yoga.controllers', [])
     if (mHandle == null) {
       MediaService.loadMedia($scope.yoga.sound).then(function(media){
         mHandle = media;
-        mHandle.play();
+        $cordovaMedia.play(media);
       });
     } else {
-      mHandle.play();
+      $cordovaMedia.play(mHandle);
     }
+    
     $scope.mediaStatus = "Playing sound...";
   }
 

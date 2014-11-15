@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('yogaapp', ['ionic', 'yoga.controllers', 'yoga.services', 'media.services'])
+angular.module('yogaapp', ['ionic', 'ngCordova', 'yoga.controllers', 'yoga.services', 'media.services'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function() {
