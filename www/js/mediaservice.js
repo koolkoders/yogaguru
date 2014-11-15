@@ -33,7 +33,7 @@ angular.module('media.services', [])
       if ($ionicPlatform.is('android')) {
         src = '/android_asset/www/' + src;
       }
-      alert("Audio src = " + src);
+      //alert("Audio src = " + src);
       defer.resolve(new $window.Media(src, mediaSuccess, mediaError, mediaStatus));
     });
     return defer.promise;
