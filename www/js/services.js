@@ -18,7 +18,7 @@ angular.module('yoga.services', [])
     { id: 33, title: 'Bhramari', URL: 'img/th3.jpg', parentId: 2, content: 'Bhramari' },
     { id: 34, title: 'Ujjayee', URL: 'img/th5.jpg', parentId: 2, content: 'Ujjayee' },
     // Popular
-    { id: 60, title: 'SuryaNamaskar', URL: 'img/sur1.jpg', parentId: 1, content: 'Sun salutation', sound: 'sounds/suryanamaskar.mp3'},
+    { id: 60, title: 'SuryaNamaskar', URL: 'img/sur1.jpg', parentId: 1, content: 'Sun salutation', sound: 'sounds/two.mp3', noguidesound: 'sounds/suryanamaskar_unguided.mp3'},
     // Asanas
     { id: 90, title: 'Sarvangasana', URL: 'img/th3.jpg', parentId: 3, content: 'Sarvangasana', sound: 'sounds/two.mp3' },
     { id: 91, title: 'Dhanurasana', URL: 'img/th8.jpg', parentId: 3, content: 'Dhanurasana', sound: 'sounds/two.mp3' },

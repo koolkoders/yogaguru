@@ -3,24 +3,16 @@
 -->
 <ion-view title="{{yoga.title}}">
   <ion-content has-header="true" padding="true">
-    <h5 class="balanced">{{yoga.content}}</h5>
-
-
+    <div class="bar bar-calm bar-header">
+      <button class="button icon ion-navicon"></button>
+      <h2 class="title">{{yoga.content}}</h2>
+      <button class="button icon ion-gear-a"></button>
+    </div>
     <div class="list card">
-
-      <label class="item item-input item-label">
-        <span class="input-label">Enter Rounds</span>
-        <i class="icon ion-ios7-sunny-outline"></i>
-        <input type="range" name="roundDuration" min="0" max="10" value="5"> 
-        <i class="icon ion-ios7-sunny"></i>
-      </label>
-      <label class="item item-input item-label">
-        <span class="input-label">Enter Round Duration</span>
-        <input type="range" class="range-positive" name="roundDuration" min="0" max="10" value="5">     
-      </label>
+      <br/>
       <ul class="list">
         <li class="item item-toggle">
-           Music
+           <h3>Guided Tour</h3>
            <label class="toggle toggle-balanced">
              <input type="checkbox" checked>
              <div class="track">
@@ -29,6 +21,16 @@
            </label>
         </li>
       </ul>
+      <ul class="list">
+        <li class="item">
+          <h3 class="col col-offset-33">Number of Rounds: {{rounds}}</h3>
+          <div class="range">
+            <i class="icon ion-minus" ng-click="downOne()"></i>
+            <input type="range" ng-model="rounds" name="numrounds" min="1" max="12" />
+            <i class="icon ion-plus" ng-click="upOne()"></i>
+          </div>
+        </li>
+      </ul>      
  
 <!--
       <div class="list">
@@ -39,16 +41,45 @@
         </div>
       </div>
 -->
-
       <div class="row">
         <div class="col col-offset-33">
           <button class="button icon ion-play balanced" ng-click="doPlay()"></button>
           <button class="button icon ion-pause" ng-click="doPause()"></button>
           <button class="button icon ion-stop assertive" ng-click="doStop()"></button>
         </div>
-      </div>              
-      <div>{{mediaStatus}}</div>
+      </div>
+      
+<!--
+      <div class="row">{{mediaStatus}}</div>
+      
+-->
+      <div class="row">
+        <div class="col col-offset-33">
+          <h3>
+            <timer interval="1000">{{minutes + ":" + seconds}}</timer>
+          </h3>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col col-offset-33">
+          <section id="clock-timer">
+            <timer>
+              <div class="progress-bar">
+                <div class="progress" style="width: {{ (minutes/result) | number:2}}%;"></div> 
+              </div>
+            </timer>
+          </section>
+        </div>     
     </div>
+    
+    <div class="row">
+      <div>
+        <h5>
+          {{mediaStatus}}
+        </h5>
+      </div>
+    </div>    
 
   </ion-content>
 </ion-view>

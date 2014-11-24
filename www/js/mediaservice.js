@@ -12,7 +12,7 @@ angular.module('media.services', [])
     getErrorMessage: getErrorMessage
   };
 
-  function loadMedia(src, onError, onStatus, onStop){
+  function loadMedia(src, onError, onStatus, onStop) {
     var defer = $q.defer();
     $ionicPlatform.ready(function() {
       var mediaSuccess = function() {
@@ -27,7 +27,9 @@ angular.module('media.services', [])
         }
       };
       var mediaStatus = function(status) {
-        if(onStatus){onStatus(status);}
+        if (onStatus) {
+          onStatus(status);
+        }
       };
 
       if ($ionicPlatform.is('android')) {
@@ -48,7 +50,7 @@ angular.module('media.services', [])
   }
 
   function getStatusMessage(status){
-    if (status === 0) {return 'Media.MEDIA_NONE';}
+    if (status === 0) { return 'Media.MEDIA_NONE';}
     else if (status === 1) { return 'Media.MEDIA_STARTING';}
     else if (status === 2) { return 'Media.MEDIA_RUNNING';}
     else if (status === 3) { return 'Media.MEDIA_PAUSED';}
