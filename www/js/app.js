@@ -5,6 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+
+
 angular.module('yogaapp', ['ionic', 'ngCordova', 'timer', 'yoga.controllers', 'yoga.services', 'media.services'])
 
 .run(function ($ionicPlatform) {
@@ -18,6 +20,9 @@ angular.module('yogaapp', ['ionic', 'ngCordova', 'timer', 'yoga.controllers', 'y
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+     
+    
+    
   });
 })
 
@@ -59,7 +64,7 @@ angular.module('yogaapp', ['ionic', 'ngCordova', 'timer', 'yoga.controllers', 'y
     .state('tab.yoga-type1', {
       url: '/yogatype1/:yogaId',
       views: {
-        'tab-home': {
+        'tab-home': {  
           templateUrl: 'templates/yoga-type1.html',
           controller: 'YogaType1Ctrl'
         }
@@ -72,6 +77,16 @@ angular.module('yogaapp', ['ionic', 'ngCordova', 'timer', 'yoga.controllers', 'y
         'tab-activity': {
           templateUrl: 'templates/tab-activity.html',
           controller: 'ActivityCtrl'
+        }
+      }
+    })
+
+    .state('tab.yoga-detail-activity', {//changing here.
+      url: '/yogadetailactivity/:id',
+      views: {
+        'tab-activity': {
+          templateUrl: 'templates/yoga-detail-activity.html',
+          controller: 'YogaActivityCtrl'
         }
       }
     })

@@ -1,8 +1,8 @@
-<ion-view title="Yoga Guru - Activity">
+<ion-view title="Yoga Guru Detail - Activity">
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="activity in activities" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        {{activity.desc}}
+    <ion-list>                                                             
+      <ion-item ng-repeat="activity in activities" type="item-text-wrap" href="#/tab/yogadetailactivity/{{activity.id}}">
+        {{activity.day}}
       </ion-item>
     </ion-list>
   </ion-content>

@@ -1,11 +1,16 @@
+
 angular.module('yoga.controllers', [])
 
 .controller('HomeCtrl', function($scope, YogaService) {
   $scope.yogaCategories = YogaService.allCategories();
 })
 
-.controller('ActivityCtrl', function($scope, YogaService) {
+.controller('ActivityCtrl', function($scope,  YogaService) {
   $scope.activities = YogaService.allActivites();
+})
+
+.controller('YogaActivityCtrl', function($scope, $stateParams, YogaService) {//chaning this.
+    $scope.activities = YogaService.detailActivites($stateParams.id);
 })
 
 .controller('YogaDetailCtrl', function($scope, $stateParams, YogaService) {
