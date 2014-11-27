@@ -9,8 +9,10 @@ angular.module('yoga.controllers', [])
   $scope.activities = YogaService.allActivites();
 })
 
-.controller('YogaActivityCtrl', function($scope, $stateParams, YogaService) {//chaning this.
-    $scope.activities = YogaService.detailActivites($stateParams.id);
+.controller('YogaActivityCtrl', function($scope, $stateParams, YogaService) {
+  var day = $stateParams.mm + "/" + $stateParams.dd + "/" + $stateParams.yy;
+  $scope.activityDay = day;
+  $scope.activities = YogaService.detailActivites(day);
 })
 
 .controller('YogaDetailCtrl', function($scope, $stateParams, YogaService) {

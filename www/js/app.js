@@ -81,8 +81,8 @@ angular.module('yogaapp', ['ionic', 'ngCordova', 'timer', 'yoga.controllers', 'y
       }
     })
 
-    .state('tab.yoga-detail-activity', {//changing here.
-      url: '/yogadetailactivity/:id',
+    .state('tab.yoga-detail-activity', {
+      url: '/yogadetailactivity/:mm/:dd/:yy',
       views: {
         'tab-activity': {
           templateUrl: 'templates/yoga-detail-activity.html',

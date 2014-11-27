@@ -6,12 +6,6 @@ angular.module('yoga.services', ['ngCordova'])
  *
  */
 .factory('YogaService', function($cordovaSQLite) {
-  //Handling db related activities
-  function initializeDB() {
-    db = $cordovaSQLite.openDB({ name: "my.db" });
-    $cordovaSQLite.execute(db, "DROP TABLE YOGA_ACTIVITY");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS YOGA_ACTIVITY (id integer, userid text, day text, yogacategory integer, seconds integer )");
-  }
 
   // Might use a resource here that returns a JSON array
   var yogadata = [
@@ -37,24 +31,47 @@ angular.module('yoga.services', ['ngCordova'])
     { id: 120, title: 'Shavasana', URL: 'img/th10.jpg', parentId: 4, content: 'Shavasana'  }
   ];
   
+  // Sample data to enable testing on browser
+  var activities = [
+    { id: 0, day: '1/3/2014', total: 3 },
+    { id: 1, day: '1/2/2014', total: 25 },
+    { id: 2, day: '1/1/2014', total: 45 }
+  ];
+  
+  var activityDetails = [
+    { id: 0, yogaType: 'SuryaNamaskar', timeSpent: 3 },
+    { id: 1, yogaType: 'Ujjayee', timeSpent: 25 },
+    { id: 2, yogaType: 'Shavasana', timeSpent: 11 }
+  ];
+  /*
+   * Database related functions.
+   */
+    //Handling db related activities
+  function initializeDB() {
+    db = $cordovaSQLite.openDB({ name: "my.db" });
+    $cordovaSQLite.execute(db, "DROP TABLE YOGA_ACTIVITY");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS YOGA_ACTIVITY" +
+                               "(id integer primary key, userid text, day text, yogacategory integer, seconds integer )");
+  }
+  
   //TODO: For the time being, as we have empty DB.
   function insertActivitiesIntoDB() {
-    var query = "INSERT INTO YOGA_ACTIVITY (id, userid, day, yogacategory, seconds) VALUES (?,?,?, ?, ?)";
+    var query = "INSERT INTO YOGA_ACTIVITY (id, userid, day, yogacategory, seconds) VALUES (?,?,?,?,?)";
 
     //Insert first record.
-    $cordovaSQLite.execute(db, query, [0, "Ramdev1", "1/1/2014", 2, 900]).then(function(res) {
+    $cordovaSQLite.execute(db, query, [0, "Ramdev1", "1/1/2014", 60, 900]).then(function(res) {
         console.log("INSERTED ID 1 -> " + res.insertId);
     }, function (err) {
         console.error(err);
     });
     //Second record.
-    $cordovaSQLite.execute(db, query, [0, "Ramdev1", "1/1/2014", 3, 900]).then(function(res) {
+    $cordovaSQLite.execute(db, query, [1, "Ramdev1", "1/1/2014", 30, 900]).then(function(res) {
         console.log("INSERTED ID 2 -> " + res.insertId);
     }, function (err) {
         console.error(err);
     });
     //Third record
-    $cordovaSQLite.execute(db, query, [0, "Ramdev1", "1/1/2014", 4, 900]).then(function(res) {
+    $cordovaSQLite.execute(db, query, [2, "Ramdev1", "1/1/2014", 90, 900]).then(function(res) {
         console.log("INSERTED ID 3 -> " + res.insertId);
     }, function (err) {
         console.error(err);
@@ -62,68 +79,78 @@ angular.module('yoga.services', ['ngCordova'])
 
 
     //Insert first record.
-    $cordovaSQLite.execute(db, query, [1, "Ramdev1", "1/2/2014", 2, 1000]).then(function(res) {
+    $cordovaSQLite.execute(db, query, [3, "Ramdev1", "1/2/2014", 60, 1000]).then(function(res) {
         console.log("INSERTED ID 1 -> " + res.insertId);
     }, function (err) {
         console.error(err);
     });
     //Second record.
-    $cordovaSQLite.execute(db, query, [1, "Ramdev1", "1/2/2014", 3, 500]).then(function(res) {
+    $cordovaSQLite.execute(db, query, [4, "Ramdev1", "1/2/2014", 31, 500]).then(function(res) {
         console.log("INSERTED ID 2 -> " + res.insertId);
     }, function (err) {
         console.error(err);
     });
     //Third record
-    $cordovaSQLite.execute(db, query, [1, "Ramdev1", "1/2/2014", 4, 200]).then(function(res) {
+    $cordovaSQLite.execute(db, query, [5, "Ramdev1", "1/3/2014", 34, 200]).then(function(res) {
         console.log("INSERTED ID 3 -> " + res.insertId);
     }, function (err) {
         console.error(err);
     });
   }
- /* Returns all the activities from database. */
- function fetchAllActivitiesFromDB() {
-  initializeDB();
-  insertActivitiesIntoDB();
-  var activities = [];
-  //Start writing select.
-  var query = "SELECT distinct day FROM YOGA_ACTIVITY";
-        $cordovaSQLite.execute(db, query).then(function(res) {
-             //TODO: Dirty for-loop need to use underscore utility for this.
-             for(count = 0; count < res.rows.length; ++count) {
-               var tableRow = [];
-               tableRow.id = count;
-               tableRow.day = res.rows.item(count).day;
-               activities.push(tableRow);
-            }
-        }, function (err) {
-            console.error(err);
-        });
   
-  return activities;
-  }
-
-  function fetchActivityByDay(id) {
+  /* Returns all the activities from database. */
+  function fetchAllActivitiesFromDB() {
+    initializeDB();
+    insertActivitiesIntoDB();
     var activities = [];
     //Start writing select.
-    var query = "SELECT  seconds FROM YOGA_ACTIVITY where id = '"+id+"'";
-          $cordovaSQLite.execute(db, query).then(function(res) {
-           
-              
-               for(count = 0; count < res.rows.length; ++count) {
-                 var tableRow = [];
-                  //TODO: Need to fetch yogadata from table only.
-                tableRow.yogaType = yogadata[count+1].title;
-                 tableRow.time = Math.round((res.rows.item(count).seconds) / 60);
-                activities.push(tableRow);
-                 
-              }
-          }, function (err) {
-              console.error(err);
-          });
-   
+    var query = "select day, sum(seconds) total from YOGA_ACTIVITY group by day order by day desc";
+    $cordovaSQLite.execute(db, query).then(function(res) {
+      console.log("Got num rows: " + res.rows.length);
+       //TODO: Dirty for-loop need to use underscore utility for this.
+      for(count = 0; count < res.rows.length; ++count) {
+        var tableRow = [];
+        var row = res.rows.item(count);
+        tableRow.id = count;
+        tableRow.day = row.day;
+        tableRow.total = Math.round(row.total / 60);
+        activities.push(tableRow);
+      }
+    }, function (err) {
+        console.error(err);
+    });
 
     return activities;
   }
+
+  function fetchActivityByDay(day) {
+    var activities = [];
+    //Start writing select.
+    var query = "SELECT * FROM YOGA_ACTIVITY where day = '" + day +"'";
+    $cordovaSQLite.execute(db, query).then(function(res) {
+      console.log("Got num rows: " + res.rows.length);
+      for(count = 0; count < res.rows.length; ++count) {
+        var row = res.rows.item(count);
+        var tableRow = [];
+        var yogaItem = getYogaItem(row.yogacategory);
+        tableRow.yogaType = yogaItem.title;
+        tableRow.timeSpent = Math.round(row.seconds / 60);
+        activities.push(tableRow);
+      }
+    }, function (err) {
+        console.error(err);
+    });
+   
+    return activities;
+  }
+  
+  function getYogaItem(index) {
+    var results = yogadata.filter(function (element) {
+      return element.id == index;
+    });
+    return results[0];
+  }
+  
   // TODO: Change these funtions to async instead.
   return {
     allCategories: function() {
@@ -133,20 +160,22 @@ angular.module('yoga.services', ['ngCordova'])
       return results;
     },
     
-    getItem: function(index) {
-      var results = yogadata.filter(function (element) {
-        return element.id == index;
-      });
-      return results[0];
-    },
+    getItem: getYogaItem,
     
     allActivites: function() {
-      return fetchAllActivitiesFromDB();
+      try {
+        return fetchAllActivitiesFromDB();
+      } catch (err) {
+        return activities;
+      }
     },
 
-    detailActivites: function(id) {
-       //day = "1/1/2014";
-       return fetchActivityByDay(id);
+    detailActivites: function(day) {
+      try {
+        return fetchActivityByDay(day);
+      } catch (err) {
+        return activityDetails;
+      }
     },
     
     getCategoryItems: function(parentId) {

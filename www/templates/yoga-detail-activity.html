@@ -1,12 +1,12 @@
 <!--
   This template loads for the 'tab.yoga-detail' state (app.js)
 -->
-<ion-view title="MoreDetail">
+<ion-view title="Activity on {{activityDay}}">
   <ion-content has-header="true" padding="true">
     <ion-list>
   
       <ion-item ng-repeat="activity in activities" type="item-text-wrap">
-        {{activity.yogaType}} -  {{activity.time}} minutes
+        {{activity.yogaType}} - {{activity.timeSpent}} minutes
       </ion-item>
     </ion-list>
 

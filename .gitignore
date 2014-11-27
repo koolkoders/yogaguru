@@ -5,6 +5,7 @@ node_modules/
 platforms/
 plugins/
 hooks/
+resources/
 scss/
 scratch/
 www/lib/**
